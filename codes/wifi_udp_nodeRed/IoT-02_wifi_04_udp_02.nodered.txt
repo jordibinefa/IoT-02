@@ -1,0 +1,386 @@
+[
+    {
+        "id": "98f8e953.5050a8",
+        "type": "udp in",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "iface": "",
+        "port": "3333",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 120,
+        "y": 380,
+        "wires": [
+            [
+                "ea574f99.5a311"
+            ]
+        ]
+    },
+    {
+        "id": "30f9e436.bb025c",
+        "type": "udp out",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "addr": "192.168.1.32",
+        "iface": "",
+        "port": "3334",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 430,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "8c60561d.4dca38",
+        "type": "inject",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "topic": "",
+        "payload": "L",
+        "payloadType": "str",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "2c7f9726.a82098",
+        "type": "inject",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "topic": "",
+        "payload": "W",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 20,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "acf73f7.48931c",
+        "type": "inject",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "topic": "",
+        "payload": "w",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "3b420b02.14cf14",
+        "type": "inject",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "topic": "",
+        "payload": "G",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "8be4cd1a.6eeb3",
+        "type": "inject",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "topic": "",
+        "payload": "g",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "a3e5049e.822a28",
+        "type": "inject",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "topic": "",
+        "payload": "i",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "73a43482.ad158c",
+        "type": "inject",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "topic": "",
+        "payload": "i34",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "98157b31.8dc7d8",
+        "type": "inject",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "topic": "",
+        "payload": "i35",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "ea574f99.5a311",
+        "type": "function",
+        "z": "4809b205.f34c3c",
+        "name": "If is it a number",
+        "func": "if(!isNaN(msg.payload))\n    return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 380,
+        "wires": [
+            [
+                "b5c508f4.cabb38",
+                "5dbe824b.20da9c",
+                "f66e49cb.bd66f8"
+            ]
+        ]
+    },
+    {
+        "id": "b5c508f4.cabb38",
+        "type": "debug",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 530,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "5dbe824b.20da9c",
+        "type": "ui_chart",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "group": "17a776cd.a84ed9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "4096",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "x": 510,
+        "y": 420,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ca624e0.ecf52b",
+        "type": "ui_switch",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "label": "White LED",
+        "group": "681cca54.d7e544",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "W",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "w",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "408d850b.63761c",
+        "type": "ui_switch",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "label": "Green LED",
+        "group": "681cca54.d7e544",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "G",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "g",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 370,
+        "y": 300,
+        "wires": [
+            [
+                "30f9e436.bb025c"
+            ]
+        ]
+    },
+    {
+        "id": "f66e49cb.bd66f8",
+        "type": "ui_gauge",
+        "z": "4809b205.f34c3c",
+        "name": "",
+        "group": "17a776cd.a84ed9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "LDR",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "4096",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 510,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "17a776cd.a84ed9",
+        "type": "ui_group",
+        "z": "",
+        "name": "Visualització",
+        "tab": "5ca1645e.26569c",
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "681cca54.d7e544",
+        "type": "ui_group",
+        "z": "",
+        "name": "Botons",
+        "tab": "5ca1645e.26569c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "5ca1645e.26569c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "UPC-School",
+        "icon": "dashboard",
+        "order": 1
+    }
+]
