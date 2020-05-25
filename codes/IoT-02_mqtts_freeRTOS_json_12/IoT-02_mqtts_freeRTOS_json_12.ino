@@ -189,6 +189,11 @@ void receivedCallback(char* topic, byte* payload, unsigned int length) {
       fP = ((float)(int)jsonBME["Px100"]) / 100;
       String szP = String(fP);
       Serial.print("P: "); Serial.print(szP); Serial.println(" hPa");
+      if (fP == 0) {
+        Serial.println("Starting I2C again!");
+        vSetupScreen();
+        vSetupBME280();
+      }
       if (fP > 869 && fP < 1100)
         client.publish( String("/" + String(sMac) + TOPIC_P).c_str(), szP.c_str());
       else
@@ -307,7 +312,7 @@ void vReadingSensorBME(void *parameter) {
   int nTx100, nPx100, nRHx100, nGr, nAx100;
   float fT, fP, fRH, fGr, fA;
   uint32_t now;
-  static uint32_t lastNow = 0,nTimes = 0;
+  static uint32_t lastNow = 0, nTimes = 0;
 
   if (xMutex == NULL)
     xMutex = xSemaphoreCreateMutex();
@@ -324,12 +329,12 @@ void vReadingSensorBME(void *parameter) {
       if (fT > -100.0) {
         jsonBME["Tx100"] = nTx100; jsonBME["RHx100"] = nRHx100; jsonBME["Px100"] = nPx100; jsonBME["G"] = nGr; jsonBME["Ax100"] = nAx100;
         /*
-        String jsonString = JSON.stringify(jsonBME);
-        Serial.print("JSON.stringify(jsonBME) = ");
-        Serial.println(jsonString);
+          String jsonString = JSON.stringify(jsonBME);
+          Serial.print("JSON.stringify(jsonBME) = ");
+          Serial.println(jsonString);
         */
       } else {
-        nTimes++; Serial.print(nTimes);Serial.println(") Setting I2C up again.");
+        nTimes++; Serial.print(nTimes); Serial.println(") Setting I2C up again.");
         vSetupScreen();
         vSetupBME280();
       }
