@@ -4,6 +4,8 @@
 void vSetupBME280() {  
   if (!bme.begin(0x76)) {
     Serial.println("Could not find a valid BME280 sensor, check wiring!");
+    delay(1000);
+    ESP.restart();
     //while (1); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   }
 }
