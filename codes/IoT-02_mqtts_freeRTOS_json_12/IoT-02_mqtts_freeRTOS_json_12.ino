@@ -189,15 +189,7 @@ void receivedCallback(char* topic, byte* payload, unsigned int length) {
       fP = ((float)(int)jsonBME["Px100"]) / 100;
       String szP = String(fP);
       Serial.print("P: "); Serial.print(szP); Serial.println(" hPa");
-      if (fP == 0) {
-        Serial.println("Starting I2C again!");
-        vSetupScreen();
-        vSetupBME280();
-      }
-      if (fP > 869 && fP < 1100)
-        client.publish( String("/" + String(sMac) + TOPIC_P).c_str(), szP.c_str());
-      else
-        Serial.println("Pressure out of range!");
+      client.publish( String("/" + String(sMac) + TOPIC_P).c_str(), szP.c_str());
     }
   }
   if (szTopic == String("/" + String(sMac) + TOPIC_REQUEST_ALT).c_str()) {
@@ -287,6 +279,7 @@ void vReconnectWifiMqtt() {
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+  vScreen16pixelText(0, 30, sMac);
   vSetupMqtt();
   mqttconnect();
 }
@@ -326,17 +319,26 @@ void vReadingSensorBME(void *parameter) {
       vReadingBME280(&nTx100, &nPx100, &nRHx100, &nGr, &nAx100);
       xSemaphoreGive(xMutex);
       fT = ((float)nTx100) / 100; fP = ((float)nPx100) / 100; fRH = ((float)nRHx100) / 100; fGr = (float)nGr; fA = ((float)nAx100) / 100;
-      if (fT > -100.0) {
-        jsonBME["Tx100"] = nTx100; jsonBME["RHx100"] = nRHx100; jsonBME["Px100"] = nPx100; jsonBME["G"] = nGr; jsonBME["Ax100"] = nAx100;
-        /*
-          String jsonString = JSON.stringify(jsonBME);
-          Serial.print("JSON.stringify(jsonBME) = ");
-          Serial.println(jsonString);
-        */
+      //if (fP > 869 && fP < 1100) {
+      if (fP > 800 && fP < 1300) {
+        if (fT > -100.0) {
+          jsonBME["Tx100"] = nTx100; jsonBME["RHx100"] = nRHx100; jsonBME["Px100"] = nPx100; jsonBME["G"] = nGr; jsonBME["Ax100"] = nAx100;
+          nTimes = 0;
+          /*
+            String jsonString = JSON.stringify(jsonBME);
+            Serial.print("JSON.stringify(jsonBME) = ");
+            Serial.println(jsonString);
+          */
+        } else
+          nTimes++;
       } else {
-        nTimes++; Serial.print(nTimes); Serial.println(") Setting I2C up again.");
+        nTimes++;
+      }
+      if (nTimes > 2) {
+        Serial.print(nTimes); Serial.println(") Setting I2C up again.");
         vSetupScreen();
         vSetupBME280();
+        nTimes = 0;
       }
     }
     vTaskDelay(10); // To avoid: Task watchdog got triggered. The following tasks did not reset the watchdog in time
