@@ -56,7 +56,7 @@ class ModBus():
 			while self.bLoop == True:
 				if k.kbhit(False):  # A Windows s'ha afegit False
 					cKey = repr(k.getch(False))
-					self.processaTecla(cKey[1])
+					self.processaTecla(cKey[2])
 				sleep(0.1)
 			self.bye()
 
