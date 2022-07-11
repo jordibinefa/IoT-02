@@ -56,7 +56,7 @@ class ModBus():
 			while self.bLoop == True:
 				if k.kbhit():
 					cKey = repr(k.getch(False))
-					self.processaTecla(cKey[2])
+					self.processaTecla(cKey[1])
 				sleep(0.1)
 			self.bye()
 
