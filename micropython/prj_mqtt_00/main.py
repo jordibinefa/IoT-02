@@ -1,4 +1,8 @@
-# https://bhave.sh/micropython-mqtt/
+'''
+Based on: https://bhave.sh/micropython-mqtt/
+https://github.com/jordibinefa/IoT-02/tree/master/micropython/prj_mqtt_00
+20220830
+'''
 from umqttsimple import MQTTClient
 from machine import Pin
 from time import sleep
