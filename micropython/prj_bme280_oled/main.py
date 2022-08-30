@@ -1,5 +1,10 @@
-# Complete project details at https://RandomNerdTutorials.com
+'''
+Based on: https://randomnerdtutorials.com/micropython-bme280-esp32-esp8266/
 
+https://github.com/jordibinefa/IoT-02/tree/master/micropython/prj_bme280_oled
+
+20220830
+'''
 from machine import Pin, SoftI2C
 import ssd1306
 from time import sleep
