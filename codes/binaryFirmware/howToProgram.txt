@@ -1,0 +1,1 @@
+esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 IoT-02_11_modbus_bme280.ino.bootloader.bin 0x8000 IoT-02_11_modbus_bme280.ino.partitions.bin 0xe000 boot_app0.bin 0x10000 IoT-02_11_modbus_bme280.ino.bin
