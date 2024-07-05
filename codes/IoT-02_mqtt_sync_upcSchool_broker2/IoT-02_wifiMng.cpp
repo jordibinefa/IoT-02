@@ -1,3 +1,4 @@
+#include <WiFi.h> // Necessari per a que funcioni amb la versió 3 del compilador d'ESP32
 #include "IoT-02_wifiMng.h"
 #include "IoT-02_wifiCredentials.h"
 
